@@ -1,0 +1,6 @@
+Authorization:  SELECT role FROM `user` WHERE (login LIKE ? AND hash_pass LIKE ?)
+Adding: INSERT INTO `user` (login, hash_pass, role, user_name, description) VALUES(?, ?, ?, ?, ?)
+Deleting: DELETE FROM `user` WHERE login LIKE ?
+Updating: REPLACE INTO `user` (login, hash_pass, role, user_name, description) VALUES(?, ?, ?, ?, ?)
+Information of user: SELECT login, hash_pass, role, user_name, description FROM `user` WHERE login LIKE ?
+All users for admin's choice: SELECT login, user_name FROM `user`
