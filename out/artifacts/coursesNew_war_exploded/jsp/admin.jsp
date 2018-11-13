@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import = "java.sql.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,14 +74,42 @@
         <form action="deleteprocess.jsp" method="post" class="deleteuser" id="deleteuserform">
             <div id="deleteexistuser">Delete user</div>
             <div class="leftcolform">
-                <div class="textonform11">Search form</div>
-                <div class="textonform22">Founded users</div>
+                <!--<div class="textonform11">Search form</div>
+                <div class="textonform22">Founded users</div>-->
                 <div class="textonform33">E-mail</div>
-                <div class="textonform44">Personal info</div>
-                <div class="textonform55">Role</div>
+                <!--<div class="textonform44">Personal info</div>
+                <div class="textonform55">Role</div>-->
             </div>
             <div class="rightcolform">
-                <div><input type="text" name="" value=""
+                <div class="userlist">
+                    <input list="emails">
+                    <datalist id="emails">
+                        <%
+                            Class.forName("com.mysql.jdbc.Driver");
+
+                            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/courses?" + "user=root&password=root");
+                            PreparedStatement pst = null;
+
+                            try {
+                                pst = conn.prepareStatement("SELECT login FROM `user`");
+                            } catch (SQLException e) {
+                                out.println("SQL querry qreating error");
+                            }
+
+                            ResultSet rs = pst.executeQuery();
+
+                            int i = 1;
+                            while(rs.next()){
+                            %>
+                                <!--/*<option value="<%rs.getString(1);%>"><%rs.getString("login");%></option>*/-->
+                                <option value="<%=rs.getString(1)%>"></option>
+                            <%
+                            i++;
+                            }
+                            %>
+                    </datalist>
+                </div>
+                <!--<div><input type="text" name="" value=""
                         selectBox></div>
                 <div><select class="" name="">
                     <option disabled>All users</option>
@@ -89,9 +118,9 @@
                 <div><textarea id="info" name="name" rows="4" cols="33"></textarea></div>
                 <div><select class="" name="">
                     <option disabled>Choose role for user</option>
-                </select></div>
+                </select></div>-->
+                <button id="butt" type="submit" name="button">Delete</button>
             </div>
-            <button id="butt" type="submit" name="button">Delete</button>
         </form>
 
         <form action="editprocess.jsp" method="post" class="editeuser" id="editeuserform">
@@ -148,6 +177,13 @@
           </select>
         </div>
         -->
+    </div>
+</div>
+
+<div class="popupcont" id="popupcont">
+    <div class="popup" id="popup">
+        <div class="operstatus">Operation Success</div>
+        <button class="close" onclick="closePopUp()">OK</button>
     </div>
 </div>
 

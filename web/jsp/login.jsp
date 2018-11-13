@@ -11,7 +11,7 @@
 <body>
 <div class="formcont">
     <div class="imagecont">
-        <img src="img/customer-login.png"class="avatar">
+        <img src="img/login/customer-login.png"class="avatar">
     </div>
 
     <form action="loginprocess.jsp" method="post" class="logcontainer">

@@ -1,11 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Max
-  Date: 11.11.2018
-  Time: 15:19
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import = "java.sql.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,51 +46,84 @@
     </div>
     <div class="rightcol">
 
-        <form class="createuser" id="createuserform">
+        <form action="createprocess.jsp" method="post"  class="createuser" id="createuserform">
             <div id="createnewuser">Create new user</div>
             <div class="leftcolform">
                 <div class="textonform1">E-email</div>
                 <div class="textonform2">Password</div>
                 <div class="textonform3">Confirm password</div>
+                <div class="textonform6">Name</div>
                 <div class="textonform4">Personal info</div>
                 <div class="textonform5">Role</div>
             </div>
             <div class="rightcolform">
-                <div><input type="text" name="" value="" required></div>
-                <div><input type="text" name="" value="" required></div>
-                <div><input type="text" name="" value="" required></div>
-                <div><textarea id="info" name="name" rows="4" cols="33"></textarea></div>
-                <div><select class="" name="">
+                <div><input type="text" name="email" value="" required></div>
+                <div><input type="text" name="password" value="" required></div>
+                <div><input type="text" name="password_cp" value="" required></div>
+                <div><input type="text" name="uname" value="" required></div>
+                <div><textarea id="info" name="info" rows="4" cols="33"></textarea></div>
+                <div><select class="" name="role">
                     <option disabled>Choose role for user</option>
+                    <option>student</option>
+                    <option>lecturer</option>
                 </select></div>
             </div>
             <button id="butt" type="submit" name="button">Add</button>
         </form>
 
-        <form class="deleteuser" id="deleteuserform">
+        <form action="deleteprocess.jsp" method="post" class="deleteuser" id="deleteuserform">
             <div id="deleteexistuser">Delete user</div>
             <div class="leftcolform">
-                <div class="textonform11">Searh form</div>
-                <div class="textonform22">Founded users</div>
+                <!--<div class="textonform11">Search form</div>
+                <div class="textonform22">Founded users</div>-->
                 <div class="textonform33">E-mail</div>
-                <div class="textonform44">Personal info</div>
-                <div class="textonform55">Role</div>
+                <!--<div class="textonform44">Personal info</div>
+                <div class="textonform55">Role</div>-->
             </div>
             <div class="rightcolform">
-                <div><input type="text" name="" value=""></div>
+                <div class="userlist">
+                    <input list="emails">
+                    <datalist id="emails">
+                        <%
+                            Class.forName("com.mysql.jdbc.Driver");
+
+                            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/courses?" + "user=root&password=root");
+                            PreparedStatement pst = null;
+
+                            try {
+                                pst = conn.prepareStatement("SELECT login FROM `user`");
+                            } catch (SQLException e) {
+                                out.println("SQL querry qreating error");
+                            }
+
+                            ResultSet rs = pst.executeQuery();
+
+                            int i = 1;
+                            while(rs.next()){
+                            %>
+                                <!--/*<option value="<%rs.getString(1);%>"><%rs.getString("login");%></option>*/-->
+                                <option value="<%=rs.getString(1)%>"></option>
+                            <%
+                            i++;
+                            }
+                            %>
+                    </datalist>
+                </div>
+                <!--<div><input type="text" name="" value=""
+                        selectBox></div>
                 <div><select class="" name="">
                     <option disabled>All users</option>
                 </select></div>
-                <div><input type="text" name="" value="" required></div>
+                <div><input type="text" name="email" value="" required></div>
                 <div><textarea id="info" name="name" rows="4" cols="33"></textarea></div>
                 <div><select class="" name="">
                     <option disabled>Choose role for user</option>
-                </select></div>
+                </select></div>-->
+                <button id="butt" type="submit" name="button">Delete</button>
             </div>
-            <button id="butt" type="submit" name="button">Delete</button>
         </form>
 
-        <form class="editeuser" id="editeuserform">
+        <form action="editprocess.jsp" method="post" class="editeuser" id="editeuserform">
             <div id="editexistuser">Edit user</div>
             <div class="leftcolform">
                 <div class="textonform111">Searh form</div>
@@ -104,6 +131,7 @@
                 <div class="textonform333">E-mail</div>
                 <div class="textonform444">New password</div>
                 <div class="textonform555">Confirm new password</div>
+                <div class="textonform888">Name</div>
                 <div class="textonform666">Personal info</div>
                 <div class="textonform777">Role</div>
             </div>
@@ -112,12 +140,15 @@
                 <div><select class="" name="">
                     <option disabled>All users</option>
                 </select></div>
-                <div><input type="text" name="" value="" required></div>
-                <div><input type="text" name="" value=""></div>
-                <div><input type="text" name="" value=""></div>
-                <div><textarea id="info" name="name" rows="4" cols="33"></textarea></div>
-                <div><select class="" name="">
+                <div><input type="text" name="email" value="" required></div>
+                <div><input type="text" name="password" value=""></div>
+                <div><input type="text" name="password_cp" value=""></div>
+                <div><input type="text" name="uname" value=""></div>
+                <div><textarea id="info" name="info" rows="4" cols="33"></textarea></div>
+                <div><select class="" name="role">
                     <option disabled>Choose role for user</option>
+                    <option>student</option>
+                    <option>lecturer</option>
                 </select></div>
             </div>
             <button id="butt" type="submit" name="button">Edit</button>
@@ -146,6 +177,13 @@
           </select>
         </div>
         -->
+    </div>
+</div>
+
+<div class="popupcont" id="popupcont">
+    <div class="popup" id="popup">
+        <div class="operstatus">Operation Success</div>
+        <button class="close" onclick="closePopUp()">OK</button>
     </div>
 </div>
 

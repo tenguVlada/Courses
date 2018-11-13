@@ -20,6 +20,7 @@
     } catch (SQLException e) {
         out.println("SQL querry qreating error");
     }
+
     pst.setString(1, email);
 
     ResultSet rs = pst.executeQuery();
