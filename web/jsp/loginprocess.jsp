@@ -8,6 +8,7 @@
 
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/courses?" + "user=root&password=root");
     PreparedStatement pst = null;
+
     try {
         pst = conn.prepareStatement("SELECT role FROM user WHERE (login LIKE ? AND hash_pass LIKE ?)");
     } catch (SQLException e) {
@@ -26,8 +27,8 @@
         else if (rs.getString(1).equals("lecturer"))
             response.sendRedirect("lecturer.jsp");
         else
-            out.println("Invalid login credentials");
+            out.println("Invalid login credentials " + rs.getString(1));
     }
     else
-        out.println("Invalid login credentials");
+        out.println("Invalid login credentials 2");
 %>

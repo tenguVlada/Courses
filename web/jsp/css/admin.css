@@ -202,7 +202,7 @@ a {
 .createuser {
   position: absolute;
   left: 30%;
-  height: 400px;
+  height: 800px;
   width: 600px;
   border: 2px solid black;
   margin-top: 20px;
@@ -234,6 +234,13 @@ a {
 .textonform3 {
   margin-left: 75px;
   margin-top: 22px;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.textonform6 {
+  margin-left: 75px;
+  margin-top: 25px;
   margin-bottom: 15px;
   font-size: 20px;
 }
