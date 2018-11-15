@@ -26,9 +26,17 @@
             response.sendRedirect("student.jsp");
         else if (rs.getString(1).equals("lecturer"))
             response.sendRedirect("lecturer.jsp");
-        else
-            out.println("Invalid login credentials " + rs.getString(1));
+        else{
+            request.setAttribute("textMsg", "Wrong email or password!");
+        %>
+            <jsp:include page="login.jsp" flush="true" />
+        <%
+        }
     }
-    else
-        out.println("Invalid login credentials 2");
+    else{
+        request.setAttribute("textMsg", "Wrong email or password!");
+    %>
+        <jsp:include page="login.jsp" flush="true" />
+    <%
+    }
 %>

@@ -6,6 +6,7 @@
     <title>Login page</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/login.css">
+    <script src="js/login.js"></script>
 </head>
 
 <body>
@@ -23,5 +24,21 @@
         <button type="submit">Sign In</button>
     </form>
 </div>
+
+<div class="popupcont" id="popupcont">
+    <div class="popup" id="popup">
+        <div class="operstatus"><%=request.getAttribute("textMsg")%></div>
+        <button class="close" onclick="closePopUp()">OK</button>
+    </div>
+</div>
+
+<% if (request != null && request.getAttribute("textMsg") != null)
+{ %>
+<script type="text/javascript">
+    openPopUp();
+</script>
+<% }
+%>
+
 </body>
 </html>

@@ -12,7 +12,7 @@
 </head>
 <body>
 <%
-  response.sendRedirect("jsp/admin.jsp");
+  response.sendRedirect("jsp/login.jsp");
 %>
 </body>
 </html>

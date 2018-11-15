@@ -1,9 +1,8 @@
 <%@ page import = "java.sql.*" %>
-<%@ page import="java.util.concurrent.TimeUnit" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    String email = request.getParameter("email");
+    String email = request.getParameter("user");
 
     Class.forName("com.mysql.jdbc.Driver");
 
@@ -28,23 +27,29 @@
     }
 
     try {
-        pst = conn.prepareStatement("DELETE FROM `user` WHERE login LIKE ?");
+        pst = conn.prepareStatement("SELECT * FROM `user` WHERE login LIKE ?");
     } catch (SQLException e) {
         out.println("SQL query qreating error");
     }
 
     pst.setString(1, email);
 
-    if (pst.executeUpdate() == 1){
-        request.setAttribute("textMsg", "User is successfully deleted!");
-    %>
+    rs = pst.executeQuery();
+    if(rs.next()){
+        request.setAttribute("email", rs.getString("login"));
+        request.setAttribute("name", rs.getString("user_name"));
+        request.setAttribute("description", rs.getString("description"));
+        request.setAttribute("role", rs.getString("role"));
+        request.setAttribute("flag", "1");
+        %>
         <jsp:include page="admin.jsp" flush="true" />
-    <%
-    }
-    else{
-        request.setAttribute("textMsg", "Invalid user credentials!");
-    %>
+        <%
+        }
+        else{
+            request.setAttribute("textMsg", "Invalid user credentials!");
+        %>
         <jsp:include page="admin.jsp" flush="true" />
-    <%
+        <%
     }
+
 %>

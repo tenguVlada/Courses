@@ -35,10 +35,16 @@
 
     pst.setString(1, email);
 
-    if (pst.executeUpdate() == 1)
-        out.println("User is successfully deleted!");
-    else
-        out.println("Invalid user credentials!");
-
-    response.sendRedirect("admin.jsp");
+    if (pst.executeUpdate() == 1){
+        request.setAttribute("textMsg", "User is successfully deleted!");
+    %>
+        <jsp:include page="admin.jsp" flush="true" />
+    <%
+    }
+    else{
+        request.setAttribute("textMsg", "Invalid user credentials!");
+    %>
+        <jsp:include page="admin.jsp" flush="true" />
+    <%
+    }
 %>

@@ -50,11 +50,16 @@
     pst.setString(4, uname);
     pst.setString(5, info);
 
-    if (pst.executeUpdate() == 1)
-        out.println("User is successfully created!");
-    else
-        out.println("Invalid user credentials!");
-
-    TimeUnit.SECONDS.sleep(3);
-    response.sendRedirect("admin.jsp");
+    if (pst.executeUpdate() == 1) {
+        request.setAttribute("textMsg", "User is successfully created!");
+        %>
+        <jsp:include page="admin.jsp" flush="true" />
+        <%
+    }
+    else{
+        request.setAttribute("textMsg", "Invalid user credentials!");
+        %>
+            <jsp:include page="admin.jsp" flush="true" />
+        <%
+    }
 %>

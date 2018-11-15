@@ -25,36 +25,34 @@
     ResultSet rs = pst.executeQuery();
     if(rs.next()){
         if (rs.getInt(1) == 0) {
-            out.println("Email isn't used.");
-            TimeUnit.SECONDS.sleep(3);
-            response.sendRedirect("admin.jsp");
-            return;
+            request.setAttribute("textMsg", "Email isn't used!");
+        %>
+            <jsp:include page="admin.jsp" flush="true" />
+        <%
         }
-    }
-    if (!password.equals(password_cp))
-    {
-        out.println("Passwords are different.");
-        TimeUnit.SECONDS.sleep(3);
-        response.sendRedirect("admin.jsp");
     }
 
     try {
-        pst = conn.prepareStatement("REPLACE INTO `user` (login, hash_pass, role, user_name, description) VALUES(?, ?, ?, ?, ?)");
+        pst = conn.prepareStatement("REPLACE INTO `user` (login, role, user_name, description) VALUES(?, ?, ?, ?)");
     } catch (SQLException e) {
         out.println("SQL querry qreating error");
     }
 
     pst.setString(1, email);
-    pst.setString(2, password);
-    pst.setString(3, role);
-    pst.setString(4, uname);
-    pst.setString(5, info);
+    pst.setString(2, role);
+    pst.setString(3, uname);
+    pst.setString(4, info);
 
-    if (pst.executeUpdate() == 1)
-        out.println("User is successfully created!");
-    else
-        out.println("Invalid user credentials!");
-
-    TimeUnit.SECONDS.sleep(3);
-    response.sendRedirect("admin.jsp");
+    if (pst.executeUpdate() == 1){
+        request.setAttribute("textMsg", "User is successfully edited!");
+    %>
+        <jsp:include page="admin.jsp" flush="true" />
+    <%
+    }
+    else{
+        request.setAttribute("textMsg", "Invalid user credentials!");
+    %>
+        <jsp:include page="admin.jsp" flush="true" />
+    <%
+    }
 %>

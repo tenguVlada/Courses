@@ -82,8 +82,8 @@
             </div>
             <div class="rightcolform">
                 <div class="userlist">
-                    <input list="emails">
-                    <datalist id="emails">
+                    <input list="email" name = "email">
+                    <datalist id="email">
                         <%
                             Class.forName("com.mysql.jdbc.Driver");
 
@@ -98,13 +98,10 @@
 
                             ResultSet rs = pst.executeQuery();
 
-                            int i = 1;
                             while(rs.next()){
                             %>
-                                <!--/*<option value="<%rs.getString(1);%>"><%rs.getString("login");%></option>*/-->
                                 <option value="<%=rs.getString(1)%>"></option>
                             <%
-                            i++;
                             }
                             %>
                     </datalist>
@@ -123,33 +120,46 @@
             </div>
         </form>
 
-        <form action="editprocess.jsp" method="post" class="editeuser" id="editeuserform">
+        <form action="searchprocess.jsp" method="post" class="searchuser" id="searchuserform">
             <div id="editexistuser">Edit user</div>
             <div class="leftcolform">
-                <div class="textonform111">Searh form</div>
-                <div class="textonform222">Founded users</div>
+                <div class="textonform111">Search form</div>
+            </div>
+            <div class="rightcolform">
+                <div class="userlist">
+                    <input list="user" name = "user">
+                    <datalist id="user">
+                        <%
+                            rs.first();
+                            while(rs.next()){
+                        %>
+                        <option value="<%=rs.getString(1)%>"></option>
+                        <%
+                            }
+                        %>
+                    </datalist>
+                </div>
+            </div>
+            <button id="buttSearch" type="submit" name="button">Search</button>
+        </form>
+
+        <form action="editprocess.jsp" method="post" class="editeuser" id="editeuserform">
+
+            <div class="leftcolform">
+
                 <div class="textonform333">E-mail</div>
-                <div class="textonform444">New password</div>
-                <div class="textonform555">Confirm new password</div>
                 <div class="textonform888">Name</div>
                 <div class="textonform666">Personal info</div>
                 <div class="textonform777">Role</div>
             </div>
             <div class="rightcolform">
-                <div><input type="text" name="" value=""></div>
-                <div><select class="" name="">
-                    <option disabled>All users</option>
-                </select></div>
-                <div><input type="text" name="email" value="" required></div>
-                <div><input type="text" name="password" value=""></div>
-                <div><input type="text" name="password_cp" value=""></div>
-                <div><input type="text" name="uname" value=""></div>
-                <div><textarea id="info" name="info" rows="4" cols="33"></textarea></div>
+                <div><input type="text" name="email" value="<%=request.getAttribute("email")%>" required></div>
+                <div><input type="text" name="uname" value="<%=request.getAttribute("name")%>"></div>
+                <div><textarea id="info" name="info" rows="4" cols="33"><%=request.getAttribute("description")%></textarea></div>
                 <div><select class="" name="role">
-                    <option disabled>Choose role for user</option>
-                    <option>student</option>
-                    <option>lecturer</option>
-                </select></div>
+                    <option <%if (new String("student").equals(request.getAttribute("role"))) {%>selected<%}%>>student</option>
+                    <option <%if (new String("lecturer").equals(request.getAttribute("role"))) {%>selected<%}%>>lecturer</option>
+               </select></div>
             </div>
             <button id="butt" type="submit" name="button">Edit</button>
         </form>
@@ -182,10 +192,29 @@
 
 <div class="popupcont" id="popupcont">
     <div class="popup" id="popup">
-        <div class="operstatus">Operation Success</div>
+        <div class="operstatus"><%=request.getAttribute("textMsg")%></div>
         <button class="close" onclick="closePopUp()">OK</button>
     </div>
 </div>
+
+<% if (request != null && request.getAttribute("textMsg") != null)
+    { %>
+        <script type="text/javascript">
+            openPopUp();
+        </script>
+    <% }
+%>
+
+<%
+    if (request != null && request.getAttribute("flag") != null)
+    { %>
+        <script type="text/javascript">
+            showEditForm();
+        </script>
+    <%
+        request.setAttribute("flag", null);
+    }
+%>
 
 <footer class="foot">
     <div class="footcont">
