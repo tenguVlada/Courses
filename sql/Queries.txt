@@ -1,6 +1,35 @@
+User:
+
 Authorization:  SELECT role FROM `user` WHERE (login LIKE ? AND hash_pass LIKE ?)
-Adding: INSERT INTO `user` (login, hash_pass, role, user_name, description) VALUES(?, ?, ?, ?, ?)
-Deleting: DELETE FROM `user` WHERE login LIKE ?
-Updating: REPLACE INTO `user` (login, hash_pass, role, user_name, description) VALUES(?, ?, ?, ?, ?)
+Adding new user: INSERT INTO `user` (login, hash_pass, role, user_name, description) VALUES(?, ?, ?, ?, ?)
+Deleting user: DELETE FROM `user` WHERE login LIKE ?
+Updating user: REPLACE INTO `user` (login, hash_pass, role, user_name, description) VALUES(?, ?, ?, ?, ?)
 Information of user: SELECT login, hash_pass, role, user_name, description FROM `user` WHERE login LIKE ?
 All users for admin's choice: SELECT login, user_name FROM `user`
+
+
+Course:
+
+Adding new course: INSERT INTO course (lecturer, course_name, theme, description) VALUES (?, ?, ?, ?)
+
+Searching with title: SELECT id, lecturer, theme, description FROM course WHERE course.course_name LIKE "%" ? "%"
+Searching with lecturer: SELECT id, course_name, theme, description FROM course WHERE lecturer LIKE ?
+
+Deleting course with id: DELETE FROM course WHERE id LIKE var_cour_id
+Deleting course without: DELETE FROM course WHERE (lecturer LIKE ?) AND (course_name LIKE ?) 
+
+Updating course with id: REPLACE INTO course (id, lecturer, course_name, theme, description) VALUES (var_cour_id, ?, ?, ?, ?)
+Updating course without id: REPLACE INTO course (id, lecturer, course_name, theme, description) SELECT id, ?, ?, ?, ? FROM course WHERE (lecturer LIKE request.lecturer) AND (course_name LIKE request.course_name)
+
+
+Lesson:
+
+Adding new lesson with id: INSERT INTO lesson (course, less_name, description, material) VALUES (var_cour_id, ?, ?, ?)
+Adding new lesson without id: INSERT INTO lesson (course, less_name, description, material) SELECT course.id, ?, ?, ? FROM course WHERE course.course_name LIKE ? 
+
+Deleting lesson with id: DELETE FROM lesson WHERE id LIKE var_les_id
+Deleting lesson without id: DELETE FROM lesson WHERE (course LIKE (SELECT id FROM course WHERE course.course_name LIKE ?) AND (less_name LIKE ?))
+
+Updating lesson with id: REPLACE INTO lesson (id, course, less_name, description, material) VALUES (var_les_id, var_cour_id, ?, ?, ?)
+Updating lesson without course id: REPLACE INTO lesson (id, course, less_name, description, material) SELECT var_id, course.id, ?, ?, ? FROM course WHERE course.course_name LIKE ?
+Updating lesson without all id: REPLACE INTO lesson (id, course, less_name, description, material) SELECT lesson.id, course.id, ?, ?, ? FROM lesson INNER JOIN course ON lesson.course = course.id WHERE (course.course_name LIKE request.course_name) AND (lesson.less_name LIKE request.less_name)
