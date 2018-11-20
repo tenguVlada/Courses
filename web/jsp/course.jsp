@@ -7,12 +7,17 @@
     <title>Course Title</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type = "text/css" href="css/course.css">
+    <script src="js/course.js"></script>
 </head>
 <body>
 <!-- Title block -->
 <%
-    //String id_course = request.getAttribute("id_course");
-    String  course_id = "1";
+    //request.setAttribute("course_id", "4");
+    String course_id = request.getParameter("course_id");
+
+    String edit = "false";
+    if ((request != null) && (request.getAttribute("edit") != null))
+        edit = request.getAttribute("edit").toString();
 
     Class.forName("com.mysql.jdbc.Driver");
 
@@ -59,7 +64,7 @@
     //response.sendRedirect("course.jsp");
 %>
 <div id="coursetitle">
-    <h1 id="title"><%=request.getAttribute("course_name")%></h1>
+    <h1 id="title">Course information</h1>
     <div id="voiceBlock"></div>
     <h4 id="voice">100 voices</h4>
     <div class="starsRate">
@@ -103,18 +108,20 @@
 <!-- main part -->
 <div class="rightCol">
     <div id="courseInfo">
-        <h2 id="courseInfoTitle"><%=request.getAttribute("course_name")%></h2>
+        <h2 id="courseInfoTitle" <%if (!edit.equals("false")){ %>contenteditable="true"<%}%>><%=request.getAttribute("course_name")%></h2>
         <div id="themeBlock">
             <h3 id="theme">Theme:</h3>
-            <div id="themeOfCourse"><%=request.getAttribute("course_theme")%></div>
+            <div id="themeOfCourse" <%if (!edit.equals("false")){ %>contenteditable="true"<%}%>><%=request.getAttribute("course_theme")%></div>
         </div>
         <h3 id="desc">Description:</h3>
         <div id="text">
-            <p id="lorem"><%=request.getAttribute("course_description")%></p>
+            <p id="lorem" <%if (!edit.equals("false")){ %>contenteditable="true"<%}%>><%=request.getAttribute("course_description")%></p>
         </div>
         <div id="buttOfCourseInfo">
-            <button type="button" name="button">Edit</button>
-            <button type="button" name="button">Delete</button>
+            <!--<form action="editsavecourse.jsp" method="post" class="courseedit">-->
+            <a href="editsavecourse.jsp?course_id=<%=course_id%>&edit=<%=edit%>"><button type="button" onclick="setVars()" name="button"><%if (edit == "true"){%>Save<%} else{System.out.println("Meow " + edit);%>Edit<%}%></button></a>
+            <!--</form>-->
+            <button type="button" onclick="openPopUp()" name="button">Delete</button>
         </div>
     </div>
 
@@ -178,6 +185,21 @@
     </div>-->
 
 </div>
+<div class="popupcont" id="popupcont">
+    <div class="popup" id="popup">
+        <div class="operstatus"><%=request.getAttribute("deleteMsg")%></div>
+        <form action="deletecourseprocess.jsp" method="post" class="coursecontainer">
+        <button class="close" type="submit" onclick="closePopUp()">OK</button>
+        </form>
+    </div>
+</div>
 
+<% if (request != null && request.getAttribute("deleteMsg") != null)
+{ %>
+<script type="text/javascript">
+    openPopUp();
+</script>
+<% }
+%>
 </body>
 </html>
