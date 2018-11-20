@@ -9,8 +9,8 @@ function save_lecture(){
     for(var i = 0; i < imgs.length; i++)
     {
         if (imgs[i] == 0) {
-            str += cnt_img + "<br>";
-            cnt_img++;
+            /*str += cnt_img + "<br>";
+            cnt_img++;*/
         }
         else {
             str += elem[cnt_text].innerHTML + "<br>";
@@ -18,15 +18,22 @@ function save_lecture(){
         }
     }
 
-    document.getElementById("lblValues").innerHTML = str;
-    sessionStorage.setItem("text", str);
-    window.location.href = "addlectureprocess.jsp";
+    document.getElementById("course_title_form").setAttribute("value", document.getElementById("course_title").innerHTML);
+    document.getElementById("lecture_title_form").setAttribute("value", document.getElementById("edit_input_title_id").innerHTML);
+    document.getElementById("description_form").setAttribute("value", document.getElementById("edit_description_id").innerHTML);
+    document.getElementById("text_form").setAttribute("value", str);
+    document.getElementById("data_send").submit();
 };
 
 function get_text(){
-    var elem = document.getElementById("total_text");
-    elem.innerHTML = sessionStorage.getItem("text");
+    /*document.getElementById("lecture_title_id").innerHTML = sessionStorage.getItem("lecture_title");
+    document.getElementById("description_id").innerHTML = sessionStorage.getItem("description");
+    document.getElementById("text_id").innerHTML = sessionStorage.getItem("text");*/
 };
+
+function get_str(){
+    return sessionStorage.getItem("course");
+} ;
 
 function add_input() {
  var p = document.getElementById("rightcol_id");

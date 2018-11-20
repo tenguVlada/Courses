@@ -37,7 +37,7 @@
     </div>
 </header>
 <div class="main_layer">
-    <div class="title">Course title</div>
+    <div class="title" id="course_title">Course title</div>
     <hr>
 
     <div class="leftcol">
@@ -46,18 +46,26 @@
         <button class="button" id="button_main" onclick="add_photo();">+ Add picture</button>
     </div>
     <div class = "rightcol" id="rightcol_id">
-        <div class="edit_input_title" contenteditable="true" data-placeholder="Enter title..." spellcheck="true"
+        <div class="edit_input_title" id="edit_input_title_id" contenteditable="true" data-placeholder="Enter lecture title..." spellcheck="true"
              data-medium-editor-element="true" role="textbox"></div>
+        <div class="edit_description" id = "edit_description_id" name="editable_desc" contenteditable="true" data-placeholder="Enter description..." spellcheck="true"
+             data-medium-editor-element="true" role="textbox" aria-multiline="true"></div>
+        <div class="material_title" data-medium-editor-element="true">Lecture material</div>
         <div class="edit_input_text" id = "edit_input_text" name="editable_input" contenteditable="true" data-placeholder="Enter text..." spellcheck="true"
              data-medium-editor-element="true" role="textbox" aria-multiline="true"></div>
         <div class="input_photo" id="input_photo_id">
             <input type='file' id="upload" onchange="readURL(this);"/>
             <img src="#" id="upload-img" alt="image" />
         </div>
-
     </div>
 </div>
-<div id="lblValues">None</div>
+<form method="post" id="data_send" action="addlectureconfirm.jsp">
+    <input type="hidden" id="course_title_form" name="course_title" value="">
+    <input type="hidden" id="lecture_title_form" name="lecture_title" value="">
+    <input type="hidden" id="description_form" name="description" value="">
+    <input type="hidden" id="text_form" name="text" value="">
+</form>
+<div id="lbl_course">None</div>
 </body>
 </html>
 

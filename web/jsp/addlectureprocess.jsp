@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import = "java.sql.*" %>
 <%@ page import="org.apache.commons.fileupload.FileItem" %>
 <%@ page import="org.apache.commons.fileupload.disk.DiskFileItemFactory" %>
 <%@ page import="org.apache.commons.fileupload.servlet.ServletFileUpload" %>
@@ -17,10 +18,43 @@
     <script src="js/addlecture.js"></script>
 </head>
 <body onload="get_text()">
-    <div id="total_text"></div>
+<!--<form method="post" id="data_send" action="addlectureconfirm.jsp">
+    <input type="text" id="course_title_id" name="course_title" value="">
+    <input type="hidden" id="lecture_title_id" name="lecture_title" value="">
+    <input type="hidden" id="description_id" name="description" value="">
+    <input type="hidden" id="text_id" name="text" value="">
+</form>-->
 
+</body>
+</html>
 <%
-    File file;
+    /*Class.forName("com.mysql.jdbc.Driver");
+
+    String course_title = "<script>sessionStorage.getItem(\"course\")</script>";
+
+    out.println(course_title);*/
+    /*Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/courses?" + "user=root&password=root");
+    PreparedStatement pst = null;
+
+    try {
+        pst = conn.prepareStatement("INSERT INTO `lesson` (course, less_name, description, material) VALUES (var_cour_id, ?, ?, ?)");
+    } catch (SQLException e) {
+        out.println("SQL querry qreating error");
+    }*/
+
+    /*
+    pst.setString(1, );
+    pst.setString(2, password);
+    pst.setString(3, role);
+    pst.setString(4, uname);
+    pst.setString(5, info);
+
+
+    }
+*/
+
+
+    /*File file;
     int maxFileSize = 5000 * 1024;
     int maxMemSize = 5000 * 1024;
     ServletContext context = pageContext.getServletContext();
@@ -79,8 +113,7 @@
         }
     } else {
         out.println("<p>No file uploaded</p>");
-    }
+    }*/
 %>
 
-</body>
-</html>
+
