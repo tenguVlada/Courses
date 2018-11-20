@@ -19,13 +19,16 @@
     if ((request != null) && (request.getAttribute("edit") != null))
         edit = request.getAttribute("edit").toString();
 
+    session.setAttribute("name", "lecturer");
+    String user = session.getAttribute("name").toString();
+
     Class.forName("com.mysql.jdbc.Driver");
 
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/courses?" + "user=root&password=root");
     PreparedStatement pst = null;
 
     try {
-        pst = conn.prepareStatement("SELECT course_name, theme, description FROM course WHERE id=?");
+        pst = conn.prepareStatement("SELECT course_name, lecturer, theme, description FROM course WHERE id=?");
     } catch (SQLException e) {
         out.println("SQL querry qreating error");
     }
@@ -35,6 +38,7 @@
     ResultSet rs = pst.executeQuery();
     if(rs.next()){
         request.setAttribute("course_name", rs.getString("course_name"));
+        request.setAttribute("course_lecturer", rs.getString("lecturer"));
         request.setAttribute("course_theme", rs.getString("theme"));
         request.setAttribute("course_description", rs.getString("description"));
     }
@@ -96,19 +100,24 @@
             }
         %>
     </div>
-
+    <%if (user.equals(request.getAttribute("course_lecturer"))){%>
     <div id="addLect">
         <button type="button" name="button">Add lecture</button>
     </div>
     <div id="addExam">
         <button type="button" name="button">Add exam</button>
     </div>
+    <%}%>
 </div>
 <!-- End navigate block -->
 <!-- main part -->
 <div class="rightCol">
     <div id="courseInfo">
         <h2 id="courseInfoTitle" <%if (!edit.equals("false")){ %>contenteditable="true"<%}%>><%=request.getAttribute("course_name")%></h2>
+        <div id="lecturerBlock">
+            <h3 id="theme">Lecturer:</h3>
+            <div id="lecturerOfCourse" <%if (!edit.equals("false")){ %>contenteditable="true"<%}%>><%=request.getAttribute("course_lecturer")%></div>
+        </div>
         <div id="themeBlock">
             <h3 id="theme">Theme:</h3>
             <div id="themeOfCourse" <%if (!edit.equals("false")){ %>contenteditable="true"<%}%>><%=request.getAttribute("course_theme")%></div>
@@ -117,12 +126,14 @@
         <div id="text">
             <p id="lorem" <%if (!edit.equals("false")){ %>contenteditable="true"<%}%>><%=request.getAttribute("course_description")%></p>
         </div>
+        <%if (user.equals(request.getAttribute("course_lecturer"))){%>
         <div id="buttOfCourseInfo">
             <!--<form action="editsavecourse.jsp" method="post" class="courseedit">-->
             <a href="editsavecourse.jsp?course_id=<%=course_id%>&edit=<%=edit%>"><button type="button" onclick="setVars()" name="button"><%if (edit == "true"){%>Save<%} else{System.out.println("Meow " + edit);%>Edit<%}%></button></a>
             <!--</form>-->
             <button type="button" onclick="openPopUp()" name="button">Delete</button>
         </div>
+        <%}%>
     </div>
 
     <h2 id="lessonsTitle">Lessons</h2>
@@ -140,10 +151,12 @@
         </div>
         <div id="bottom">
             <h3><a id="testRef" href="#">Test</a></h3>
+            <%if (user.equals(request.getAttribute("course_lecturer"))){%>
             <div id="buttOfLectureInfo">
                 <button type="button" name="button">Edit</button>
                 <button type="button" name="button">Delete</button>
             </div>
+            <%}%>
         </div>
     </div>
     <%
