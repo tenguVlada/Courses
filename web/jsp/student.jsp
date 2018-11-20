@@ -11,6 +11,28 @@
     <title>Student page</title>
 </head>
 <body>
+
+<header>
+    <div class = "logo">
+        <img src="header/logo.png" alt="logo">
+    </div>
+    <headercount>
+        <div class="item"><a href="">Courses</a></div>
+        <div class="item"><a href="">About</a></div>
+        <div class="item">
+            <form action="login.jsp">
+                <p><input type="search" name="q" placeholder="Search courses">
+                    <input type="image" id = "buttonSearch" src="header/search.png" alt="Search">
+                </p>
+            </form>
+        </div>
+    </headercount>
+    <div class="reg">
+        <div id="adminimg"></div>
+        <a href="login.jsp"><%out.print(session.getAttribute("name"));%><br>Log Out</a>
+    </div>
+</header>
+
     <% out.print("You are student"); %>
 </body>
 </html>

@@ -20,12 +20,21 @@
 
     ResultSet rs = pst.executeQuery();
     if(rs.next()){
-        if (rs.getString(1).equals("admin"))
+        if (rs.getString(1).equals("admin")) {
             response.sendRedirect("admin.jsp");
-        else if (rs.getString(1).equals("student"))
+            session.setAttribute("name", username);
+            session.setAttribute("role", "admin");
+        }
+        else if (rs.getString(1).equals("student")) {
             response.sendRedirect("student.jsp");
-        else if (rs.getString(1).equals("lecturer"))
+            session.setAttribute("name", username);
+            session.setAttribute("role", "student");
+        }
+        else if (rs.getString(1).equals("lecturer")) {
             response.sendRedirect("lecturer.jsp");
+            session.setAttribute("name", username);
+            session.setAttribute("role", "lecturer");
+        }
         else{
             request.setAttribute("textMsg", "Wrong email or password!");
         %>

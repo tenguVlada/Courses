@@ -37,7 +37,7 @@
     rs = pst.executeQuery();
     if(rs.next()){
         request.setAttribute("email", rs.getString("login"));
-        request.setAttribute("name", rs.getString("user_name"));
+        request.setAttribute("user_name", rs.getString("user_name"));
         request.setAttribute("description", rs.getString("description"));
         request.setAttribute("role", rs.getString("role"));
         request.setAttribute("flag", "1");

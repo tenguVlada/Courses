@@ -1,5 +1,4 @@
 <%@ page import = "java.sql.*" %>
-<%@ page import="java.util.concurrent.TimeUnit" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%

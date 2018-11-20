@@ -11,20 +11,23 @@
 <body>
 
 <header>
-    <div class="headercont">
-        <div class="logo">
-            COURSE
-        </div>
-        <div class="item"><a href="">Home</a></div>
-        <div class="item"><a href="">Abous Us</a></div>
-        <div class="item"><a href="">Contacts</a></div>
-        <form class="item">
-            <input type="search" id="searchform" placeholder="Let's start!">
-            <button id="searchbutt" type="submit" name="searchbutt">Find</button>
-        </form>
+    <div class = "logo">
+        <img src="header/logo.png" alt="logo">
     </div>
-    <div class="headercont">
-        <div class="reg"><a href="">Sign In or Register</a></div>
+    <headercount>
+        <div class="item"><a href="">Courses</a></div>
+        <div class="item"><a href="">About</a></div>
+        <div class="item">
+            <form action="login.jsp">
+                <p><input type="search" name="q" placeholder="Search courses">
+                    <input type="image" id = "buttonSearch" src="header/search.png" alt="Search">
+                </p>
+            </form>
+        </div>
+    </headercount>
+    <div class="reg">
+        <div id="adminimg"></div>
+        <a href="login.jsp"><%out.print(session.getAttribute("name"));%><br>Log Out</a>
     </div>
 </header>
 
@@ -153,13 +156,37 @@
                 <div class="textonform777">Role</div>
             </div>
             <div class="rightcolform">
-                <div><input type="text" name="email" value="<%=request.getAttribute("email")%>" required></div>
-                <div><input type="text" name="uname" value="<%=request.getAttribute("name")%>"></div>
-                <div><textarea id="info" name="info" rows="4" cols="33"><%=request.getAttribute("description")%></textarea></div>
+                <%
+                    String email = (String)request.getAttribute("email");
+                    String user_name = (String)request.getAttribute("user_name");
+                    String role = (String)request.getAttribute("role");
+                    String description = (String)request.getAttribute("description");
+                    if (email == null)
+                        email = "";
+                    if (user_name == null)
+                        user_name = "";
+                    if (role == null)
+                        role = "student";
+                    if (description == null)
+                        description = "";
+                %>
+                <div><input type="text" name="email" value="<%=email%>" required></div>
+                <div><input type="text" name="uname" value="<%=user_name%>"></div>
+                <div><textarea id="info" name="info" rows="4" cols="33"><%=description%></textarea></div>
+                <div class="radioButtons">
+                    <input type="radio" id="roleChoice1"
+                           name="roleRadio" value="student" <%if (new String("student").equals(role)) {%>checked="checked"<%}%>>
+                    <label for="roleChoice1">Student</label>
+                    <input type="radio" id="roleChoice2"
+                           name="roleRadio" value="lecturer" <%if (new String("lecturer").equals(role)) {%>checked="checked"<%}%>>
+                    <label for="roleChoice2">Lecturer</label>
+                </div>
+                <!--
                 <div><select class="" name="role">
-                    <option <%if (new String("student").equals(request.getAttribute("role"))) {%>selected<%}%>>student</option>
-                    <option <%if (new String("lecturer").equals(request.getAttribute("role"))) {%>selected<%}%>>lecturer</option>
-               </select></div>
+                    <option %if (new String("student").equals(role)) {%selected%}%>student</option>
+                    <option %if (new String("lecturer").equals(role)) {%selected%}%>lecturer</option>
+                </select></div>
+                -->
             </div>
             <button id="butt" type="submit" name="button">Edit</button>
         </form>
