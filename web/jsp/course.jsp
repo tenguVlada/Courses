@@ -129,7 +129,7 @@
         <%if (user.equals(request.getAttribute("course_lecturer"))){%>
         <div id="buttOfCourseInfo">
             <!--<form action="editsavecourse.jsp" method="post" class="courseedit">-->
-            <a href="editsavecourse.jsp?course_id=<%=course_id%>&edit=<%=edit%>"><button type="button" onclick="setVars()" name="button"><%if (edit == "true"){%>Save<%} else{System.out.println("Meow " + edit);%>Edit<%}%></button></a>
+            <!--<a href="editsavecourse.jsp?course_id=<%//=course_id%>&edit=<%//=edit%>">--><button type="button" onclick="call('<%=course_id%>', '<%=edit%>')" name="button"><%if (edit == "true"){%>Save<%} else{System.out.println("Meow " + edit);%>Edit<%}%></button><!--</a>-->
             <!--</form>-->
             <button type="button" onclick="openPopUp()" name="button">Delete</button>
         </div>
