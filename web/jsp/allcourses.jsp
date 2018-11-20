@@ -77,7 +77,7 @@
         <%
             for (int i = 1; i < t; i++){
         %>
-        <a href="allcourses.jsp?theme=<%=request.getAttribute("><h3><%=request.getAttribute("theme"+i)%></h3></a>
+        <a href="allcourses.jsp?theme=<%=request.getAttribute("theme"+i)%>"><h3><%=request.getAttribute("theme"+i)%></h3></a>
         <%
             }
         %>
