@@ -136,80 +136,21 @@
         }
     %>
 
-    <!--<div id="courseCard">
-        <div class="leftPart">
-            <img src="image/teacher-icon.png" alt="">
-            <h4>Name</h4>
-        </div>
-
-        <div class="centerPart">
-            <h2 id="courseNameAndDescr">Course theme: short description</h2>
-            <span>Description: </span><span>Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-              voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-              cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-            </span>
-            <br/>
-            <div id="lessCount">
-                <span><h4>Lessons: </h4></span>
-                <span><h4>12</h4></span>
-            </div>
-        </div>
-
-        <div class="rightPart">
-            <div id="rate">
-                <div class="starsRate">
-                    <span>&#9734;</span>
-                    <span>&#9734;</span>
-                    <span>&#9734;</span>
-                    <span>&#9734;</span>
-                    <span>&#9734;</span>
-                </div>
-                <h4 id="voice">100 voices</h4>
-            </div>
-            <button id="showMoreButt" type="button" name="button">Show more</button>
+    <div class="popupcont" id="popupcont">
+        <div class="popup" id="popup">
+            <div class="operstatus"><%=request.getAttribute("textMsg")%></div>
+            <button class="close" onclick="closePopUp()">OK</button>
         </div>
     </div>
 
-    <div id="courseCard">
-        <div class="leftPart">
-            <img src="image/teacher-icon.png" alt="">
-            <h4>Name</h4>
-        </div>
+    <% if (request != null && request.getAttribute("textMsg") != null)
+    { %>
+    <script type="text/javascript">
+        openPopUp();
+    </script>
+    <% }
+    %>
 
-        <div class="centerPart">
-            <h2 id="courseNameAndDescr">Course theme: short description</h2>
-            <span>Description: </span><span>Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-              voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-              cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-            </span>
-            <br/>
-            <div id="lessCount">
-                <span><h4>Lessons: </h4></span>
-                <span><h4>12</h4></span>
-            </div>
-        </div>
-
-        <div class="rightPart">
-            <div id="rate">
-                <div class="starsRate">
-                    <span>&#9734;</span>
-                    <span>&#9734;</span>
-                    <span>&#9734;</span>
-                    <span>&#9734;</span>
-                    <span>&#9734;</span>
-                </div>
-                <h4 id="voice">100 voices</h4>
-            </div>
-            <button id="showMoreButt" type="button" name="button">Show more</button>
-        </div>
-    </div>
--->
 </div>
 </body>
 </html>

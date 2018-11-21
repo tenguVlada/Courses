@@ -30,7 +30,7 @@
     try {
         pst = conn.prepareStatement("SELECT course_name, lecturer, theme, description FROM course WHERE id=?");
     } catch (SQLException e) {
-        out.println("SQL querry qreating error");
+        out.println("SQL query creating error");
     }
 
     pst.setString(1, course_id);
@@ -115,7 +115,7 @@
     <div id="courseInfo">
         <h2 id="courseInfoTitle" <%if (!edit.equals("false")){ %>contenteditable="true"<%}%>><%=request.getAttribute("course_name")%></h2>
         <div id="lecturerBlock">
-            <h3 id="theme">Lecturer:</h3>
+            <h3 id="lecturer">Lecturer:</h3>
             <div id="lecturerOfCourse" <%if (!edit.equals("false")){ %>contenteditable="true"<%}%>><%=request.getAttribute("course_lecturer")%></div>
         </div>
         <div id="themeBlock">
@@ -131,7 +131,7 @@
             <!--<form action="editsavecourse.jsp" method="post" class="courseedit">-->
             <!--<a href="editsavecourse.jsp?course_id=<%//=course_id%>&edit=<%//=edit%>">--><button type="button" onclick="call('<%=course_id%>', '<%=edit%>')" name="button"><%if (edit == "true"){%>Save<%} else{System.out.println("Meow " + edit);%>Edit<%}%></button><!--</a>-->
             <!--</form>-->
-            <button type="button" onclick="openPopUp()" name="button">Delete</button>
+            <button type="button" onclick="openPopUpConf()" name="button">Delete</button>
         </div>
         <%}%>
     </div>
@@ -197,22 +197,30 @@
         </div>
     </div>-->
 
-</div>
-<div class="popupcont" id="popupcont">
-    <div class="popup" id="popup">
-        <div class="operstatus"><%=request.getAttribute("deleteMsg")%></div>
-        <form action="deletecourseprocess.jsp" method="post" class="coursecontainer">
-        <button class="close" type="submit" onclick="closePopUp()">OK</button>
-        </form>
+    <div class="popupconfcont" id="popupconfcont">
+        <div class="popupconf" id="popupconf">
+            <div class="operstatus">User will be deleted. Continue?</div>
+            <div class="popUpButtons">
+                <button id="confirm" onclick="statusPressed('confirm');closePopUpConf();pageRedirect('deletecourseprocess.jsp?course_id=<%=course_id%>')">OK</button>
+                <button id="cancel" onclick="statusPressed('close');closePopUpConf()">Cancel</button>
+            </div>
+        </div>
     </div>
-</div>
 
-<% if (request != null && request.getAttribute("deleteMsg") != null)
-{ %>
-<script type="text/javascript">
-    openPopUp();
-</script>
-<% }
+    <div class="popupcont" id="popupcont">
+        <div class="popup" id="popup">
+            <div class="operstatus"><%=request.getAttribute("textMsg")%></div>
+            <button class="close" onclick="closePopUp()">OK</button>
+        </div>
+    </div>
+
+    <% if (request != null && request.getAttribute("textMsg") != null)
+    { %>
+    <script type="text/javascript">
+        openPopUp();
+    </script>
+        <% }
 %>
+
 </body>
 </html>
