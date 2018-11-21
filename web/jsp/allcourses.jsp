@@ -17,18 +17,32 @@
    if (request.getParameter("theme") != null)
        theme = request.getParameter("theme");
 
+    String search = null;
+    if (request.getParameter("q") != null)
+        search = request.getParameter("q");
+    System.out.println("Search: " + search);
+
     Class.forName("com.mysql.jdbc.Driver");
 
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/courses?" + "user=root&password=root");
     PreparedStatement pst = null;
 
-   if (theme == null) {
+   if ((theme == null) && (search == null)){
         try {
             pst = conn.prepareStatement("SELECT course.id, course.lecturer, course.course_name, course.theme, course.description, COUNT(lesson.id) AS less_count FROM course LEFT JOIN lesson ON course.id = lesson.course GROUP BY course.id");
         } catch (SQLException e) {
             out.println("SQL query creating error");
         }
     }
+    else if (search != null){
+       System.out.println("Meow tut ");
+       try {
+           pst = conn.prepareStatement("SELECT course.id, course.lecturer, course.course_name, course.theme, course.description, COUNT(lesson.id) AS less_count FROM course LEFT JOIN lesson ON course.id = lesson.course WHERE course.course_name LIKE \"%\" ? \"%\" GROUP BY course.id");
+           pst.setString(1, search);
+       } catch (SQLException e) {
+           out.println("SQL query creating error");
+       }
+   }
     else {
         try {
             pst = conn.prepareStatement("SELECT course.id, course.lecturer, course.course_name, course.theme, course.description, COUNT(lesson.id) AS less_count FROM course LEFT JOIN lesson ON course.id = lesson.course WHERE course.theme = ? GROUP BY course.id");
