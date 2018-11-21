@@ -48,19 +48,15 @@
         pst.setString(5, course_description);
 
         if (pst.executeUpdate() == 1) {
-            try {
-                pst = conn.prepareStatement("SET FOREIGN_KEY_CHECKS=1");
-            } catch (SQLException e) {
-                out.println("SQL query creating error");
-            }
-            pst.executeQuery();
             request.setAttribute("textMsg", "Course is successfully edited!");
-
         }
+        else
+            request.setAttribute("textMsg", "Course edit failed!");
             try {
                 pst = conn.prepareStatement("SET FOREIGN_KEY_CHECKS=1");
             } catch (SQLException e) {
                 out.println("SQL query creating error");
+
             }
         %>
         <jsp:include page="course.jsp?course_id=<%=course_id%>" flush="true" />
