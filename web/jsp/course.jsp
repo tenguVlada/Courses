@@ -14,6 +14,7 @@
 <%
     //request.setAttribute("course_id", "4");
     String course_id = request.getParameter("course_id");
+    System.out.println("Meow tut " + course_id);
 
     String edit = "false";
     if ((request != null) && (request.getAttribute("edit") != null))
@@ -57,6 +58,18 @@
         request.setAttribute("less_id"+n, rs.getString("id"));
         request.setAttribute("less_name"+n, rs.getString("less_name"));
         request.setAttribute("less_description"+n, rs.getString("description"));
+        PreparedStatement pst2 = null;
+        try {
+            pst2 = conn.prepareStatement("SELECT test.id FROM (lesson INNER JOIN test ON lesson.id = test.lesson) WHERE lesson.id = ?");
+        } catch (SQLException e) {
+        }
+        String less_id =  request.getAttribute("less_id"+n).toString();
+        pst2.setString(1, less_id);
+        ResultSet rs2 = pst2.executeQuery();
+        request.setAttribute("less_test"+n, null);
+        if(rs2.next()) {
+            request.setAttribute("less_test"+n, rs2.getString("id"));
+        }
         n++;
         %>
         <!--<h3><span>-</span><a href="#"></a></h3>
@@ -65,6 +78,8 @@
         -->
         <%
     }
+
+
     //response.sendRedirect("course.jsp");
 %>
 <div id="coursetitle">
@@ -150,7 +165,7 @@
             <p id="lorem"><%=request.getAttribute("less_description"+i)%></p>
         </div>
         <div id="bottom">
-            <h3><a id="testRef" href="#">Test</a></h3>
+            <%if (request.getAttribute("less_test"+i) != null){%><h3><a id="testRef" href="passtest.jsp?test_id=<%=request.getAttribute("less_test"+i)%>">Test</a></h3><%}%>
             <%if (user.equals(request.getAttribute("course_lecturer"))){%>
             <div id="buttOfLectureInfo">
                 <button type="button" name="button">Edit</button>
@@ -199,7 +214,7 @@
 
     <div class="popupconfcont" id="popupconfcont">
         <div class="popupconf" id="popupconf">
-            <div class="operstatus">User will be deleted. Continue?</div>
+            <div class="operstatus">Course will be deleted. Continue?</div>
             <div class="popUpButtons">
                 <button id="confirm" onclick="statusPressed('confirm');closePopUpConf();pageRedirect('deletecourseprocess.jsp?course_id=<%=course_id%>')">OK</button>
                 <button id="cancel" onclick="statusPressed('close');closePopUpConf()">Cancel</button>
