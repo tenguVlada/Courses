@@ -33,3 +33,55 @@ Deleting lesson without id: DELETE FROM lesson WHERE (course LIKE (SELECT id FRO
 Updating lesson with id: REPLACE INTO lesson (id, course, less_name, description, material) VALUES (var_les_id, var_cour_id, ?, ?, ?)
 Updating lesson without course id: REPLACE INTO lesson (id, course, less_name, description, material) SELECT var_id, course.id, ?, ?, ? FROM course WHERE course.course_name LIKE ?
 Updating lesson without all id: REPLACE INTO lesson (id, course, less_name, description, material) SELECT lesson.id, course.id, ?, ?, ? FROM lesson INNER JOIN course ON lesson.course = course.id WHERE (course.course_name LIKE request.course_name) AND (lesson.less_name LIKE request.less_name)
+
+
+Test:
+Adding new test: INSERT INTO test(lesson, evaluation) VALUES(?, ?)
+Adding new open question: INSERT INTO question(test, q_text, points, isExam, isOpen) VALUES(?, ?, ?, 0, 1)
+Adding new option question: INSERT INTO question(test, q_text, points, isExam, isOpen) VALUES(?, ?, ?, 0, 0)
+Adding new option answer: INSERT INTO answer(question, a_text, coefficient) VALUES(?, ?, ?)
+
+View test: SELECT id, q_text, isOpen FROM question WHERE test = ?
+
+Test results:
+Save student's open answer: INSERT INTO answer(question, a_text, coefficient) VALUES(?, ?, null)
++Save student's answer: INSERT INTO studentanswer(student, answer) VALUES(?, ?)
+
+Deleting test: DELETE FROM test WHERE id LIKE ?
+Updating test: REPLACE INTO test(id, lesson, evaluation) VALUES(?, ?, ?)
+
+
+Deleting results of student's test: 
+DELETE FROM studentanswer WHERE id IN (SELECT sid FROM (SELECT studentanswer.id AS sid FROM 
+	(studentanswer INNER JOIN 
+		(answer INNER JOIN 
+			(question INNER JOIN test 
+			ON question.test = test.id) 
+		ON answer.question = question.id) 
+	ON answer.id = studentanswer.answer) 
+WHERE (studentanswer.student = ?) AND test.id = ?) AS result)
+If answer is open then +:
+DELETE FROM studentanswer WHERE id IN (SELECT sid FROM (SELECT answer.id AS sid FROM 
+	(studentanswer INNER JOIN 
+		(answer INNER JOIN 
+			(question INNER JOIN test 
+			ON question.test = test.id) 
+		ON answer.question = question.id) 
+	ON answer.id = studentanswer.answer) 
+WHERE (studentanswer.student = ?) AND test.id = ?) AS result)
+
+View student's answers: 
+SELECT question.id, q_text, points, isOpen, answer.id, a_text, coefficient, student AS sid FROM 
+	(studentanswer INNER JOIN 
+		(answer INNER JOIN 
+			(question INNER JOIN test 
+			ON question.test = test.id) 
+		ON answer.question = question.id) 
+	ON answer.id = studentanswer.answer) 
+WHERE (studentanswer.student = "student") AND test.id = 1
+
+Evalute open answer: REPLACE INTO answer(id, question, a_text, coefficient) VALUES(?, ?, ?, ?)
+Evaluate test: REPLACE INTO studentlesson(id, student, lesson, page, mark) VALUES(?, ?, NULL, ?, ?)
+Evaluate exam: REPLACE INTO subscribe(id, student, course, mark) VALUES(?, ?, ?, ?, ?)
+
+Subscribe process: INSERT INTO subscribe(student, course, mark) VALUES(?, ?, NULL)
