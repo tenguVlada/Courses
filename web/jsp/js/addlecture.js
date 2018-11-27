@@ -18,9 +18,16 @@ function save_lecture(){
         }
     }
 
-    document.getElementById("course_title_form").setAttribute("value", document.getElementById("course_title").innerHTML);
-    document.getElementById("lecture_title_form").setAttribute("value", document.getElementById("edit_input_title_id").innerHTML);
-    document.getElementById("description_form").setAttribute("value", document.getElementById("edit_description_id").innerHTML);
+    str.replace("'", "|");
+
+    /*for(var i = 0; i < str.length; i++)
+    {
+        if(str.charAt(i) == '\'')
+            str = '|';
+    }*/
+    document.getElementById("course_title_form").setAttribute("value", document.getElementById("course_title").innerHTML.replace("'", "|"));
+    document.getElementById("lecture_title_form").setAttribute("value", document.getElementById("edit_input_title_id").innerHTML.replace("'", "|"));
+    document.getElementById("description_form").setAttribute("value", document.getElementById("edit_description_id").innerHTML.replace("'", "|"));
     document.getElementById("text_form").setAttribute("value", str);
     document.getElementById("data_send").submit();
 };
@@ -97,13 +104,16 @@ function readURL(input) {
         }
     }
 
-/*function readURL(e) {
-    if (this.files && this.files[0]) {
-        var reader = new FileReader();
-        $(reader).load(function(e) {
-            $('#upload-img').attr('src', e.target.result);
-        });
-        reader.readAsDataURL(this.files[0]);
-    }
+function closePopUp(){
+    var backPopUp = document.getElementById("popupcont");
+    var popUp = document.getElementById("popup");
+    backPopUp.style.display = "none";
+    popUp.style.display = "none";
 }
-$("#upload").change(readURL);*/
+
+function openPopUp(){
+    var backPopUp = document.getElementById("popupcont");
+    var popUp = document.getElementById("popup");
+    backPopUp.style.display = "inline";
+    popUp.style.display = "inline";
+}

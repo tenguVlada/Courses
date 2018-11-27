@@ -20,7 +20,3 @@ function statusPressed(button){
     return false;
   }
 }
-
-function pageRedirect(ref){
-    window.location.href = ref;
-};

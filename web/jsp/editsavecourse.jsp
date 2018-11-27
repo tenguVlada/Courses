@@ -47,8 +47,8 @@
         pst.setString(4, course_theme);
         pst.setString(5, course_description);
 
-        if (pst.executeUpdate() == 1) {
-            request.setAttribute("textMsg", "Course is successfully edited!");
+        if (pst.executeUpdate() > 0) {
+            request.setAttribute("textMsg", "Course edited!");
         }
         else
             request.setAttribute("textMsg", "Course edit failed!");

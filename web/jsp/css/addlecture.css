@@ -8,7 +8,7 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  background: #2b4d66;
+  background: #78c4ff;
   font-family: Helvetica;
   border-radius: 5px 5px 0 0;
   border-bottom: 2px solid #627F9E;
@@ -118,7 +118,8 @@ footer p {
 }
 
 .main_layer {
-  color: #F5F5F5;
+  /*background-color: black;*/
+  color: #F5F5F5;/*#F5F5F5*/
   margin-top: 10px;
   margin-left: 10%;
   margin-right: 10%;
@@ -178,14 +179,16 @@ hr {
 }
 
 .leftcol {
+
   margin-left: 3%;
   float: left;
   width: auto;
 }
 
 .rightcol {
-  width: 70%;
-  margin-left: 26%;
+  position: absolute;
+  width: 50%;
+  margin-left: 20%;
 }
 
 [contentEditable=true]:empty:not(:focus):before{
@@ -221,6 +224,10 @@ hr {
   border: 1px solid black;
   width: auto;
   margin-bottom: 2px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 30px;
+  padding-right: 30px;
   text-align: left;
   color: black;
   font-size: 16px;
@@ -233,6 +240,10 @@ hr {
   width: auto;
   margin-top: 2px;
   margin-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 30px;
+  padding-right: 30px;
   text-align: left;
   color: black;
   font-size: 16px;
@@ -242,7 +253,58 @@ hr {
   border: 1px solid black;
   width: auto;
   margin-bottom: 2px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 30px;
+  padding-right: 30px;
   text-align: left;
   color: black;
   font-size: 16px;
+}
+
+.popupcont{
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 16px;
+  background-color: rgba(1, 1, 1, 0.725);
+  z-index: 100;
+  overflow: auto;
+}
+
+.popup{
+  display: none;
+  width: 300px;
+  height: 150px;
+  margin: 200px auto;
+  background: #fff;
+  z-index: 200;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 16px;
+  border-radius: 10px;
+}
+
+.operstatus {
+  text-align: center;
+  font-size: 26px;
+  font-family: sans-serif;
+}
+
+.close{
+  width: 140px;
+  height: 40px;
+  margin-left: 80px;
+  margin-top: 80px;
+  cursor: pointer;
+  font-size: 18px;
+  border: 0;
+  background-color: #78c4ff;
+  color: white;
 }

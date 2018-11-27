@@ -41,7 +41,7 @@
     try {
         pst = conn.prepareStatement("INSERT INTO `user` (login, hash_pass, role, user_name, description) VALUES(?, ?, ?, ?, ?)");
     } catch (SQLException e) {
-        out.println("SQL querry qreating error");
+        out.println("SQL query creating error");
     }
 
     pst.setString(1, email);
