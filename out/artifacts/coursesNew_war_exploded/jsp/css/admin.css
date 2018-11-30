@@ -1,225 +1,206 @@
-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  background: #689cd2;
-  font-family: Helvetica;
-  border-radius: 5px 5px 0 0;
-  border-bottom: 2px solid #627F9E;
-}
-
 a {
   color: #ffffff;
   text-decoration: none;
 }
 
-.headercont {
+/*header*/
+header {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background: #2b4d66;
+  font-family: Helvetica;
+  border-radius: 5px 5px 0 0;
+  border-bottom: 2px solid #627F9E;
+}
+
+header headercount {
+  display: flex;
+  justify-content: space-between;
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .logo {
-  font-weight: bold;
-  color: #ffffff;
-  padding: 10px 30px;
-  font-size: 35px;
+  position: absolute;
+}
+
+.logo img{
+  height: 60px;
 }
 
 .item {
+  margin-top:10px;
+  display: inline;
   font-weight: bold;
-  padding: 10px 30px;
-  margin-top: 50px;
-  font-size: 20px;
+  padding: 3px 30px;
+  font-size: 16px;
 }
 
 .reg {
+  width: 100px;
+  position: absolute;
+  display:inline;
   font-weight: bold;
-  padding: 10px 30px;
-  font-size: 15px;
-  margin-top: -45px;
+  font-size: 14px;
+  margin-left: 85%;
+  margin-top: 1%;
 }
 
-#searchform {
-  border-radius: 5px;
-  outline: none;
-  height: 30px;
+form {
   width: 250px;
-  border: 0px;
-  font-family: Helvetica;
-}
-
-#searchbutt {
+  height: 20px;
   border-radius: 5px;
-  height: 30px;
-  background-color: #2D258C;
-  border: 0px;
-  font-family: Helvetica;
-  color: #ffffff;
-  cursor: pointer;
 }
 
+form p{
+  border: black 5px;
+  height: 20px;
+  border-radius: 5px;
+  width: 250px;
+}
 
+.item form p input {
+  position: absolute;
+  top:30px;
+  width: 230px;
+  height: 20px;
+  border: none;
+  background: #ffffff;
+  color: #9E9C9C;
+  border-radius: 5px 0 0 5px;
+}
 
+#buttonSearch{
+  background: white;
+  border-radius: 0 5px 5px 0;
+  margin-left: 230px;
+  height: 20px;
+  width:20px;
+}
 
-.foot {
+/*footer*/
+footer {
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  left: 6px; right:6px; bottom: 4px;
   font: 12px sans-serif;
   padding: 1%;
   border-top: 2px solid #08BFBB;
-  margin-top: 640px;
-  background-color:  #87CEFA;
+  background-color:  #7cacc9;
   border-radius: 0 0 5px 5px;
 }
 
 .contact {
-  float: left;
-  margin-left: 50px;
+  width: 1000px;
+  margin: 0 auto;
 }
 
 .copyright {
-  float: right;
-  margin-right: 50px;
-  margin-top: 20px;
+  display: inline;
+}
+
+.copyright p{
+  float:right;
+  margin-top: 0px;
+}
+
+footer p {
+  display: inline;
 }
 
 .footcont {
-  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 1000px;
 }
 
+/*admin page*/
 
+.main{
+border-color: black;
+}
 
 .title {
-  overflow: hidden;
+  margin-top: 5px;
+  height:22px;
+  width: auto;
+  background: linear-gradient(to right, #fefcea, #2b4d68, #fefcea);
+  font-size: 20px;
+  font-family: sans-serif;
+  color: white;
   text-align: center;
-  font-size: 25px;
 }
 
-.title span {
-  display: inline-block;
-  vertical-align: middle;
+.contentt{
+  width:100%;
+
+  height: 550px;
 }
 
-.title:before {
-  content: "";
-  display: inline-block;
-  vertical-align: middle;
-  width: 100%;
-  height: 3px;
-  background-color: #000000;
-  position: relative;
-  margin-left: -100%;
-  left: -14px;
-}
-
-.title:after {
-  content: "";
-  display: inline-block;
-  vertical-align: middle;
-  width: 100%;
-  height: 3px;
-  background-color: #000000;
-  position: relative;
-  margin-right: -100%;
-  right: -14px;
-}
-
-.leftcol {
+#leftcol {
+  margin-left: 250px;
   float: left;
-  width: 350px;
+  height: 550px;
+  width: 250px;
 }
 
-.rightcol {
-  float: right;
-  margin-left: 50px;
-}
+#rightcol {
+  position:absolute;
+  margin-left: 38%;
 
-.admininfo {
-  /*border: 2px solid black;*/
-  padding: 20px;
-  background: #ffffff;
-  box-shadow: 0 7px 11px 0 rgba(0, 0, 0, 0.6), 0 9px 19px 0 rgba(0, 0, 0, 0.57);
-  margin-top: 20px;
-  margin-left: 30px;
-  margin-bottom: 30px;
-  margin-right: 30px;
+  height: 550px;
+  width: 600px;
+  margin-right: 70px;
 }
 
 #adminimg {
-  text-align: center;
-}
-
-#adminname {
-  text-align: center;
-  font-size: 18px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-#actiontitle {
-  overflow: hidden;
-  text-align: center;
-  font-size: 20px;
-}
-
-#actiontitle:before {
-  content: "";
+  margin-top: 1%;
   display: inline-block;
-  vertical-align: middle;
-  width: 100%;
-  height: 3px;
-  background-color: #000000;
-  position: relative;
-  margin-left: -100%;
-  left: -14px;
-}
-
-#actiontitle:after {
-  content: "";
-  display: inline-block;
-  vertical-align: middle;
-  width: 100%;
-  height: 3px;
-  background-color: #000000;
-  position: relative;
-  margin-right: -100%;
-  right: -14px;
+  width: 14px;
+  height: 14px;
+  background-color: rgba(124,172,201, 0.75);
+  background-image: url(../img/admin/admin.png);
 }
 
 .butt {
   text-align: center;
-  margin: 25px;
+  margin-top: 10px;
 }
 
 .butt button {
   height: 35px;
-  width: 300px;
-  background-color: #78c4ff;
-  padding: 10px 10px;
-  color: white;
-  border: none;
-  /*border: 2px solid black;*/
+  width: 200px;
+  border: 2px solid #2b4d66;
+  color: #2b4d66;
   font-size: 18px;
   font-family: sans-serif;
+  font-weight: bold;
   cursor: pointer;
+  box-shadow:5px 8px 9px 0px rgba(0,0,0,0.51);
+  -webkit-box-shadow:5px 8px 9px 0px rgba(0,0,0,0.51);
+  -moz-box-shadow:5px 8px 9px 0px rgba(0,0,0,0.51);
 }
 
-button:hover {
-  opacity: 0.8;
+.actbuttons{
+  margin: 0 auto;
+  margin-top: 20px;
 }
 
 /*Create user form style*/
 .createuser {
-     position: absolute;
-     left: 30%;
-     height: 450px;
-     width: 600px;
-     /*border: 2px solid black;*/
-     margin-top: 20px;
-     margin-right: 30px;
-     display: none;
-     padding: 20px;
-     background: #ffffff;
-     box-shadow: 0 7px 11px 0 rgba(0, 0, 0, 0.6), 0 9px 19px 0 rgba(0, 0, 0, 0.57);
- }
+  position: absolute;
+  display: none;
+  height: 400px;
+  width: 600px;
+  border: 2px solid black;
+  margin-top: 20px;
+  margin-right: 30px;
+  font-family: Helvetica;
+}
 
 #createnewuser {
   font-size: 24px;
@@ -229,55 +210,66 @@ button:hover {
 }
 
 .textonform1 {
-  margin-left: 75px;
-  margin-top: 12px;
-  margin-bottom: 15px;
+  /*background-color: blue;*/
+  margin: 10px;
   font-size: 20px;
+}
+
+.textonform1 input{
+  float: right;
+  width: 300px;
 }
 
 .textonform2 {
-  margin-left: 75px;
-  margin-top: 21px;
-  margin-bottom: 15px;
+  height: 85px;
+  margin: 10px;
   font-size: 20px;
 }
 
-.textonform3 {
-  margin-left: 75px;
-  margin-top: 22px;
-  margin-bottom: 15px;
+.textonform2 textarea{
+  width: 300px;
+}
+
+.radioGroup{
+  display: flex;
+  justify-content: space-between;
+  float: right;
+  text-align: center;
+  width:300px;
+  font-family: sans-serif;
   font-size: 20px;
 }
 
-.textonform6 {
-  margin-left: 75px;
-  margin-top: 25px;
-  margin-bottom: 15px;
-  font-size: 20px;
+.rbutt{
+  width:150px;
+
+  height: 10px;
 }
 
-.textonform4 {
-  margin-left: 75px;
-  margin-top: 27px;
-  margin-bottom: 15px;
-  font-size: 20px;
+.rbutt p{
+  margin-top: 0px;
+  width:90px;
+
 }
 
-.textonform5 {
-  margin-left: 75px;
-  margin-top: 80px;
-  margin-bottom: 15px;
-  font-size: 20px;
+.radioGroup input{
+width: 150px;
+position: absolute;
 }
 
+#student{
+  background-color: grey;
+}
 .leftcolform {
-  float: left;
-  width: 250px;
+  margin: 0 auto;
+  width:500px;
+  background-color: white;
 }
 
 .rightcolform {
   float: right;
   margin-right: 30px;
+  background-color: black;
 }
 
 .rightcolform input{
@@ -288,71 +280,41 @@ button:hover {
   font-size: 16px;
 }
 
-/*.rightcolform select{
+.rightcolform select{
   margin-top: 10px;
   margin-bottom: 10px;
   height: 20px;
   width: 150px;
   font-size: 16px;
-}*/
+}
 
 #info{
-  margin-top: 10px;
-  margin-bottom: 10px;
+  float:right;
   resize: none;
   font-size: 16px;
 }
 
 #butt {
-  position: relative;
-  left: -7%;
   width: 200px;
   height: 30px;
+  margin-left: 200px;
   margin-top: 11px;
-  background-color: #78c4ff;
-  color: white;
-  border: none;
-  /*border: 2px solid black;*/
+  border: 2px solid black;
   font-size: 18px;
   font-family: sans-serif;
   cursor: pointer;
-}
-
-#butt:hover {
-  opacity: 0.8;
-}
-
-#buttDel {
-  position: relative;
-  left: -7%;
-  width: 200px;
-  height: 30px;
-  margin-top: 35px;
-  background-color: #78c4ff;
-  color: white;
-  border: none;
-  /*border: 2px solid black;*/
-  font-size: 18px;
-  font-family: sans-serif;
-  cursor: pointer;
-}
-
-#butDel:hover {
-  opacity: 0.8;
 }
 
 /*Delete user form style*/
 .deleteuser {
   position: absolute;
-  left: 30%;
+  display: none;
   height: 200px;
   width: 600px;
-  padding: 20px;
-  background: #ffffff;
-  box-shadow: 0 7px 11px 0 rgba(0, 0, 0, 0.6), 0 9px 19px 0 rgba(0, 0, 0, 0.57);
-  display: none;
+  border: 2px solid black;
   margin-top: 20px;
   margin-right: 30px;
+  font-family: Helvetica;
 }
 
 #deleteexistuser {
@@ -362,59 +324,22 @@ button:hover {
   text-align: center;
 }
 
-.userlist {
-  margin-right: 75px;
-  margin-top: -50px;
-  font-size: 16px;
+.deleteuser .userSearch{
+  margin-left:20%;
+  margin-top: 2px;
+  width: 300px;
 }
 
-/*.textonform11 {
-  margin-left: 75px;
-  margin-top: 12px;
-  margin-bottom: 15px;
-  font-size: 20px;
-}
-
-.textonform22 {
-  margin-left: 75px;
-  margin-top: 18px;
-  margin-bottom: 15px;
-  font-size: 20px;
-}
-*/
-.textonform33 {
-  margin-left: 75px;
-  margin-top: 12px;
-  margin-bottom: 15px;
-  font-size: 20px;
-}
-/*
-.textonform44 {
-  margin-left: 75px;
-  margin-top: 25px;
-  margin-bottom: 15px;
-  font-size: 20px;
-}
-
-.textonform55 {
-  margin-left: 75px;
-  margin-top: 75px;
-  margin-bottom: 15px;
-  font-size: 20px;
-}
-*/
 /*Edit user form*/
 .editeuser {
   position: absolute;
-  left: 30%;
-  height: 300px;
-  width: 600px;
-  padding: 20px;
-  background: #ffffff;
-  box-shadow: 0 7px 11px 0 rgba(0, 0, 0, 0.6), 0 9px 19px 0 rgba(0, 0, 0, 0.57);
   display: none;
-  margin-top: 280px;
+  height: 400px;
+  width: 600px;
+  border: 2px solid black;
+  margin-top: 20px;
   margin-right: 30px;
+  font-family: Helvetica;
 }
 
 #editexistuser {
@@ -423,66 +348,14 @@ button:hover {
   margin-bottom: 30px;
   text-align: center;
 }
+ .edUserSearch {
+  display: inline;
 
-.textonform111 {
-  margin-left: 75px;
-  margin-top: 12px;
-  margin-bottom: 15px;
-  font-size: 20px;
-}
-
-.textonform222 {
-  margin-left: 75px;
-  margin-top: 18px;
-  margin-bottom: 15px;
-  font-size: 20px;
-}
-
-.textonform333 {
-  margin-left: 75px;
-  margin-top: 22px;
-  margin-bottom: 15px;
-  font-size: 20px;
-}
-
-.textonform444 {
-  margin-left: 75px;
-  margin-top: 22px;
-  margin-bottom: 15px;
-  font-size: 20px;
-}
-
-.textonform555 {
-  margin-left: 75px;
-  margin-top: 18px;
-  margin-bottom: 15px;
-  font-size: 20px;
-}
-
-.textonform666 {
-  margin-left: 75px;
-  margin-top: 25px;
-  margin-bottom: 15px;
-  font-size: 20px;
-}
-
-.textonform777 {
-  margin-left: 75px;
-  margin-top: 70px;
-  margin-bottom: 15px;
-  font-size: 20px;
-}
-
-.textonform888 {
-  margin-left: 75px;
-  margin-top: 18px;
-  margin-bottom: 15px;
-  font-size: 20px;
+  width: 300px;
 }
 
 .popupcont{
   display: none;
-  opacity: 0.8;
   position: fixed;
   left: 0;
   right: 0;
@@ -526,36 +399,4 @@ button:hover {
   border: 0;
   background-color: #78c4ff;
   color: white;
-}
-
-.searchuser {
-  position: absolute;
-  left: 30%;
-  height: 200px;
-  width: 600px;
-  margin-top: 20px;
-  margin-right: 30px;
-  padding: 20px;
-  background: #ffffff;
-  display: none;
-  box-shadow: 0 7px 11px 0 rgba(0, 0, 0, 0.6), 0 9px 19px 0 rgba(0, 0, 0, 0.57);
-}
-
-#buttSearch {
-  position: relative;
-  left: -7%;
-  width: 200px;
-  height: 30px;
-  margin-top: 100px;
-  background-color: #78c4ff;
-  color: white;
-  border: none;
-  /*border: 2px solid black;*/
-  font-size: 18px;
-  font-family: sans-serif;
-  cursor: pointer;
-}
-
-#buttSearch:hover {
-  opacity: 0.8;
 }

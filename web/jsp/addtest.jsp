@@ -12,7 +12,9 @@
 <body>
 <jsp:include page="header/header.jsp"/>
 <%
-    String c_id = "1";//request.getParameter("course_id");
+    String c_id = request.getParameter("course_id");
+    String l_id = request.getParameter("lesson_id");
+    System.out.println("id: " + l_id);
 
     Class.forName("com.mysql.jdbc.Driver");
 
@@ -34,6 +36,7 @@
         cn = rs.getString("course_name");
         //request.setAttribute("course_name", rs.getString("course_name"));
     }
+
 %>
 <div class="main_layer">
     <div class="title" id="course_title"><%=cn%></div>
@@ -44,6 +47,7 @@
         <button class="button" id="button_main" onclick="add_close();">+ Add close question</button>
         <button class="button" id="button_main" onclick="add_open();">+ Add open question</button>
     </div>
+    <%System.out.println("id: " + l_id);%>
     <form class = "rightcol" id="rightcol_id" action="addtestprocess.jsp">
         <div class="material_title" data-medium-editor-element="true">Questions</div>
        <!-- <div class="edit_test" id="edit_test_id" name="test">
@@ -71,9 +75,12 @@
             <label class="lbl">Mark for question:</label>
             <input type="number" id="mark_id" value="1" min="1"/>
         </div>-->
+        <input type="text" name="course_id" id="course_id" value="<%=c_id%>" style="display:none;"/>
+        <input type="text" name="lesson_id" id="lesson_id" value="<%=l_id%>" style="display:none;"/>
+        <input type="text" name="quest_count" id="quest_count_id" style="display:none;"/>
     </form>
 </div>
-
+<br>
 </body>
 </html>
 

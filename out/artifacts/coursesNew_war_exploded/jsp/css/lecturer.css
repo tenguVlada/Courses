@@ -23,11 +23,11 @@ a {
 }
 
 /*header*/
-header {
+/*header {
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    background: #2b4d66;
+    background: #78c4ff;
     font-family: Helvetica;
     border-radius: 5px 5px 0 0;
     border-bottom: 2px solid #627F9E;
@@ -66,6 +66,8 @@ header headercount {
     margin-left: 85%;
     margin-top: 1%;
 }
+
+
 form {
     width: 250px;
     height: 20px;
@@ -96,7 +98,7 @@ form p input {
     margin-left: 230px;
     height: 20px;
     width:20px;
-}
+}*/
 
 /*header {
   display: flex;
@@ -165,16 +167,16 @@ img {
 	width: 200px;
 	/*border-radius: 10px;*/
 	color: #aaaaaa;
-	box-shadow: 0 7px 11px 0 rgba(0, 0, 0, 0.6), 0 9px 19px 0 rgba(0, 0, 0, 0.57);
+    box-shadow: 0 7px 11px 0 rgba(0, 0, 0, 0.6), 0 9px 19px 0 rgba(0, 0, 0, 0.57);
 }
 
 .lecturer_info{
-	border-radius: 10px;
+	/*border-radius: 10px;*/
 	padding: 10px;
 	line-height: 90%;
 	background: #ffffff;
 	color: #000000;
-	box-shadow: 0 7px 11px 0 rgba(0, 0, 0, 0.6), 0 9px 19px 0 rgba(0, 0, 0, 0.57);
+	/*box-shadow: 0 7px 11px 0 rgba(0, 0, 0, 0.6), 0 9px 19px 0 rgba(0, 0, 0, 0.57);*/
 }
 
 .personal_info {
@@ -186,7 +188,7 @@ img {
 	width: 800px;
 	background: #79c4fd;
 	color: #ffffff;
-	/*box-shadow: 0 7px 11px 0 rgba(0, 0, 0, 0.6), 0 9px 19px 0 rgba(0, 0, 0, 0.57);*/
+	box-shadow: 0 7px 11px 0 rgba(0, 0, 0, 0.6), 0 9px 19px 0 rgba(0, 0, 0, 0.57);
 }
 
 
@@ -246,7 +248,7 @@ title {
 	right: 3%;
 	width: 800px;
 	background: #c9dbf8;
-	
+    box-shadow: 0 7px 11px 0 rgba(0, 0, 0, 0.6), 0 9px 19px 0 rgba(0, 0, 0, 0.57);
 }
 
 
@@ -283,16 +285,24 @@ title {
 }
 
 .course {
-	border-radius: 10px;
+	/*border-radius: 10px;*/
+
 	background: #ffffff;
+    font-color: #000000;
 	position: relative;
 	padding: 6px;
 	margin: 2%;
-	box-shadow: 0 7px 11px 0 rgba(0, 0, 0, 0.6), 0 9px 19px 0 rgba(0, 0, 0, 0.57);
+	/*box-shadow: 0 7px 11px 0 rgba(0, 0, 0, 0.6), 0 9px 19px 0 rgba(0, 0, 0, 0.57);*/
 }
 
 .course_header {
 	margin-top: 5%;
+}
+
+.courselink {
+    color: #000000;
+    text-underline: black;
+    text-decoration: none;
 }
 
 course h4 p a{
